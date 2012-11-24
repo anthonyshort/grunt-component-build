@@ -9,7 +9,7 @@
 var Builder = require('component-builder');
 var fs = require('fs');
 var path = require('path');
-var template = fs.readFileSync( __dirname + '/../lib/require.js');
+var template = fs.readFileSync( __dirname + '/../lib/require.tmpl').toString();
 
 module.exports = function(grunt) {
 
@@ -24,6 +24,7 @@ module.exports = function(grunt) {
     var opts = this.data;
     var name = this.target;
     var output = path.resolve(this.data.output);
+    var done = this.async();
 
     // The component builder
     var builder = new Builder( path.resolve(path.dirname(this.data.config)) );
@@ -42,14 +43,9 @@ module.exports = function(grunt) {
     // The component config
     var config = require( path.resolve(this.data.base, 'component.json') );
 
-    // The scripts that will be included in the bundle
-    config.scripts = config.scripts || [];
-
     // Add in extra scripts during the build since Component makes
     // us define each and every file in our component to build it.
-    if( this.data.scripts ) {
-      config.scripts = grunt.file.expandFiles(this.data.scripts);
-    }
+    config.scripts = grunt.file.expandFiles(config.scripts || []);
 
     if( config.paths ) {
       builder.addLookup(config.paths);
@@ -80,12 +76,10 @@ module.exports = function(grunt) {
 
       var jsFile = path.join(output, name + '.js');
       var cssFile = path.join(output, name + '.css');
-      var js = fs.createWriteStream(jsFile);
-      var css = fs.createWriteStream(cssFile);
 
       // Write CSS file
       if( opts.styles !== false ) {
-        css.write(obj.css);
+        grunt.file.write(cssFile, obj.css);
       }
 
       // Write JS file
@@ -95,14 +89,15 @@ module.exports = function(grunt) {
             data: obj,
             config: config,
             name: name
-          });
-          js.write(string);
+          }, 'init');
+          grunt.file.write(jsFile, string);
         }
         else {
-          js.write(obj.require);
-          js.write(obj.js);
+          grunt.file.write(jsFile, obj.require + obj.js);
         }       
       }
+
+      done();
 
     });
   });
