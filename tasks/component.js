@@ -9,7 +9,7 @@
 var Builder = require('component-builder');
 var fs = require('fs');
 var path = require('path');
-var template = fs.readFileSync('./node_modules/grunt-component/lib/require.js');
+var template = fs.readFileSync( __dirname + '/../lib/require.js');
 
 module.exports = function(grunt) {
 
@@ -72,7 +72,6 @@ module.exports = function(grunt) {
 
     // Build the component
     builder.build(function(err, obj){
-      console.log( 'foo' );
 
       if (err) {
         grunt.log.error( err.message );
