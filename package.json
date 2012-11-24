@@ -1,0 +1,40 @@
+{
+  "name": "grunt-component-build",
+  "description": "Build and watch Components",
+  "version": "0.1.0",
+  "homepage": "https://github.com/anthonyshort/grunt-component-build",
+  "author": {
+    "name": "Anthony Short",
+    "email": "antshort+github@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/anthonyshort/grunt-component-build.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anthonyshort/grunt-component-build/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/anthonyshort/grunt-component-build/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "grunt.js",
+  "bin": "bin/grunt-component-build",
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "component-builder":"*"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.15"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
