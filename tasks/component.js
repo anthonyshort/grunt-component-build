@@ -25,6 +25,7 @@ module.exports = function(grunt) {
     var name = this.target;
     var output = path.resolve(this.data.output);
     var done = this.async();
+    var self = this;
 
     // The component builder
     var builder = new Builder( path.resolve(path.dirname(this.data.config)) );
@@ -33,9 +34,9 @@ module.exports = function(grunt) {
     builder.copyAssetsTo(output);
 
     // Ignore component parts
-    if( this.data.ignore ) {
-      Object.keys(this.data.ignore).forEach(function(n){
-        var type = this.data.ignore[n];
+    if( opts.ignore ) {
+      Object.keys(opts.ignore).forEach(function(n){
+        var type = opts.ignore[n];
         builder.ignore(n, type);
       });
     }
@@ -45,7 +46,7 @@ module.exports = function(grunt) {
 
     // Add in extra scripts during the build since Component makes
     // us define each and every file in our component to build it.
-    config.scripts = grunt.file.expandFiles(config.scripts || []);
+    config.scripts = grunt.file.expandFiles( this.data.scripts || config.scripts || [] );
 
     if( config.paths ) {
       builder.addLookup(config.paths);
@@ -74,16 +75,15 @@ module.exports = function(grunt) {
         grunt.fatal( err.message );
       }
 
-      var jsFile = path.join(output, name + '.js');
-      var cssFile = path.join(output, name + '.css');
-
       // Write CSS file
       if( opts.styles !== false ) {
+        var cssFile = path.join(output, name + '.css');
         grunt.file.write(cssFile, obj.css);
       }
 
       // Write JS file
       if( opts.scripts !== false ) {
+        var jsFile = path.join(output, name + '.js');
         if( opts.standalone ) {
           var string = grunt.template.process(template, {
             data: obj,
