@@ -24,6 +24,7 @@ component: {
     output: './dist/',
     config: './component.json',
     styles: false,
+    scripts: [ 'src/**/*.js' ],
     standalone: true
   }
 }
