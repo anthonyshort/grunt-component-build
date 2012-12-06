@@ -1,7 +1,7 @@
 {
   "name": "grunt-component-build",
   "description": "Build and watch Components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/anthonyshort/grunt-component-build",
   "author": {
     "name": "Anthony Short",
