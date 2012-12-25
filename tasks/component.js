@@ -20,7 +20,7 @@ module.exports = function(grunt) {
   // TASKS
   // ==========================================================================
 
-  grunt.registerMultiTask('component', 'Your task description goes here.', function() {
+  grunt.registerMultiTask('component', 'component-build for grunt.', function() {
     var opts = this.data;
     var name = this.target;
     var output = path.resolve(this.data.output);
@@ -29,6 +29,10 @@ module.exports = function(grunt) {
 
     // The component builder
     var builder = new Builder( path.resolve(path.dirname(this.data.config)) );
+
+    if( opts.sourceUrls === true ) {
+      builder.addSourceURLs();
+    }
 
     // Where to output the final file
     builder.copyAssetsTo(output);
@@ -46,7 +50,8 @@ module.exports = function(grunt) {
 
     // Add in extra scripts during the build since Component makes
     // us define each and every file in our component to build it.
-    config.scripts = grunt.file.expandFiles( this.data.scripts || config.scripts || [] );
+    config.scripts = grunt.file.expandFiles( config.scripts || [] );
+    config.templates = grunt.file.expandFiles( config.templates || [] );
 
     if( config.paths ) {
       builder.addLookup(config.paths);
@@ -66,6 +71,18 @@ module.exports = function(grunt) {
     // the original config from the file and this will
     // override settings during the build
     builder.conf = config;
+
+    if( opts.plugins ) {
+      opts.plugins.forEach(function(name){
+        var plugin = require('../plugins/' + name);
+        builder.use(plugin);
+      });
+    }
+
+    // Configure hook
+    if( opts.configure ) {
+      opts.configure.call(this, builder);
+    }
 
     // Build the component
     builder.build(function(err, obj){

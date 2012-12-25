@@ -31,12 +31,15 @@ module.exports = function(grunt) {
     },
 
     component: {
-      scripts: ['./src/*'],
       output: 'dist/',
       dev: false,
       standalone: 'name',
       name: 'file',
-      prefix: 'css'
+      prefix: 'css',
+      plugins: ['templates', 'coffee'],
+      configure: function(builder){
+        
+      }
     }
   });
 
