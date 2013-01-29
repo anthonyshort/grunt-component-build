@@ -5,16 +5,14 @@ Build and watch Components. Supports file globs inside of the scripts to build a
 You can specify scripts and styles within Grunt and these will override the component.json file. This means you don't need to list every file to build with Component. This shouldn't be used for building Components themselves, but for compiling applications in a way you normally would with Browserify but using Component instead so you have access to Components. 
 
 ## Getting Started
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-component-build`
+If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
 
-Then add this line to your project's `grunt.js` gruntfile:
-
-```javascript
-grunt.loadNpmTasks('grunt-component-build');
+```shell
+npm install grunt-component-build --save-dev
 ```
 
-[grunt]: https://github.com/cowboy/grunt
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
+[grunt]: http://gruntjs.com/
+[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
 
 ## Documentation
 
