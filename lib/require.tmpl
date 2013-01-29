@@ -1,9 +1,9 @@
 ;(function(){
-  {%= data.require %}
-  {%= data.js %}
+  <%= require %>
+  <%= js %>
   if ("undefined" == typeof module) {
-    window.{%= name %} = require("{%= name %}");
+    window.<%= name %> = require("<%= name %>");
   } else {
-    module.exports = require("{%= name %}");
+    module.exports = require("<%= name %>");
   }
 })();
