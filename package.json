@@ -7,6 +7,9 @@
     "name": "Anthony Short",
     "email": "antshort+github@gmail.com"
   },
+  "contributors": [
+    "Antoine Lehurt <keuwah@gmail.com> (https://github.com/kewah)"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/anthonyshort/grunt-component-build.git"
