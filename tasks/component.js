@@ -6,6 +6,8 @@
  * Licensed under the MIT license.
  */
 
+'use strict';
+
 var Builder = require('component-builder');
 var fs = require('fs');
 var path = require('path');
