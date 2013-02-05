@@ -98,7 +98,9 @@ You don't need to add the `.js` extension when requiring the coffee files. Each 
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
 ## Release History
-_(Nothing yet)_
+0.2.0beta - Added support for grunt 0.4.0
+0.1.4 - Added builder.js plugin support
+0.1.0 - First release
 
 ## License
 Copyright (c) 2012 Anthony Short  
