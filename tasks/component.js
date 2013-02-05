@@ -6,6 +6,8 @@
  * Licensed under the MIT license.
  */
 
+'use strict';
+
 var Builder = require('component-builder');
 var fs = require('fs');
 var path = require('path');
@@ -50,12 +52,12 @@ module.exports = function(grunt) {
 
     // Add in extra scripts during the build since Component makes
     // us define each and every file in our component to build it.
-    config.scripts = grunt.file.expandFiles( config.scripts || [] );
-    config.templates = grunt.file.expandFiles( config.templates || [] );
+    config.scripts = grunt.file.expand( config.scripts || [] );
+    config.templates = grunt.file.expand( config.templates || [] );
 
     if( config.paths ) {
       builder.addLookup(config.paths);
-    }    
+    }
 
     // Prefix urls
     if( this.data.prefix ) {
@@ -102,16 +104,16 @@ module.exports = function(grunt) {
       if( opts.scripts !== false ) {
         var jsFile = path.join(output, name + '.js');
         if( opts.standalone ) {
+          obj.name = name;
+          obj.config = config;
           var string = grunt.template.process(template, {
-            data: obj,
-            config: config,
-            name: name
-          }, 'init');
+            data: obj
+          });
           grunt.file.write(jsFile, string);
         }
         else {
           grunt.file.write(jsFile, obj.require + obj.js);
-        }       
+        }
       }
 
       done();

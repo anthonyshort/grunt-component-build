@@ -1,3 +1,5 @@
+'use strict';
+
 var grunt = require('grunt');
 
 /*
@@ -28,7 +30,7 @@ exports['component'] = {
   'helper': function(test) {
     test.expect(1);
     // tests here
-    test.equal(grunt.helper('component'), 'component!!!', 'should return the correct value.');
+    test.ok(require('../tasks/component'), 'should return the correct value.');
     test.done();
   }
 };
