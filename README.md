@@ -14,7 +14,7 @@ grunt.loadNpmTasks('grunt-component-build');
 ```
 
 [grunt]: https://github.com/cowboy/grunt
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
+[getting_started]: https://github.com/gruntjs/grunt/wiki/Getting-started
 
 ## Documentation
 
