@@ -14,7 +14,7 @@ npm install grunt-component-build --save-dev
 [grunt]: https://github.com/cowboy/grunt
 [getting_started]: https://github.com/gruntjs/grunt/wiki/Getting-started
 
-## Documentation
+## The Basics
 
 Add a component section to your Grunt file:
 
@@ -29,6 +29,70 @@ component: {
   }
 }
 ```
+
+You can add as many sub-tasks to the component task and they will be compiled separately.
+
+## Extending Component with Plugins
+
+Builder.js allows us to extending it so we can add support for other languages, like Coffeescript or Jade. You can do this easily in the `configure` option in your grunt file.
+
+```js
+component: {
+  app: {
+    output: './dist/',
+    config: './component.json',
+    styles: false,
+    scripts: [ 'src/**/*.js' ],
+    standalone: true,
+    configure: function(builder) {
+      builder.use(myPlugin);
+    }
+  }
+}
+```
+
+These plugins are extremely simple. You can grab them from npm or write your own. 
+
+* [Stylus](https://npmjs.org/package/component-stylus)
+* [Coffeescript](https://npmjs.org/package/builder-coffee)
+* [Prebuilder](https://npmjs.org/package/component-prebuilder)
+
+## Built-in Plugins
+
+There are two plugins built into this grunt task. They compile Coffeescript and plain HTML. 
+
+```js
+component: {
+  app: {
+    output: './dist/',
+    config: './component.json',
+    styles: false,
+    scripts: [ 'src/**/*.js' ],
+    standalone: true,
+    plugins: ['coffee', 'templates']
+  }
+}
+```
+
+These are located in the `/plugins` folder and function the same way as any other builder.js plugin. These are opt-in so you'll need to add the line to your config.
+
+### Templates
+
+Templates will convert any html files you have added to the `templates` section of your `component.json` file so you can require them without needing to do anything. 
+
+```js
+var template = require('./template.html');
+```
+
+### Coffeescript
+
+This works the same way as the template plugin except that it uses the scripts section of the `component.json` file. It will automatically compile and files ending in `.coffee` and allow you to require them as if they were JS files. 
+
+```js
+var calendar = require('calendar');
+```
+
+You don't need to add the `.js` extension when requiring the coffee files. Each coffee file is converted on the fly and replaces the original in the built file.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
