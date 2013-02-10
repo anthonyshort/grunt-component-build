@@ -1,9 +1,8 @@
 ;(function(){
-  <%= require %>
-  <%= js %>
-  if ("undefined" == typeof module) {
-    window.<%= name %> = require("<%= name %>");
-  } else {
-    module.exports = require("<%= name %>");
-  }
-})();
+<%= require %><%= js %>if (typeof exports == "object") {
+  module.exports = require("<%= config.name %>");
+} else if (typeof define == "function" && define.amd) {
+  define(require("<%= config.name %>"));
+} else {
+  window["<%= name %>"] = require("<%= config.name %>");
+}})();
