@@ -9,7 +9,7 @@ expected-prod:
 	@component build -o $(DIR) -n build-prod
 
 standalone:
-	@component build -o $(DIR) -n standalone -s Test
+	@component build -o $(DIR) -n standalone -s $$
 
 clean:
 	rm -fr $(DIR)

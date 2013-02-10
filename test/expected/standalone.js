@@ -217,5 +217,5 @@ if (typeof exports == "object") {
 } else if (typeof define == "function" && define.amd) {
   define(require("grunt-component-build-test"));
 } else {
-  window["Test"] = require("grunt-component-build-test");
+  window["$"] = require("grunt-component-build-test");
 }})();

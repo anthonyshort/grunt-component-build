@@ -1,6 +1,7 @@
 'use strict';
 
 var grunt = require('grunt');
+var read = grunt.file.read;
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -23,14 +24,47 @@ var grunt = require('grunt');
 */
 
 exports['component'] = {
-  setUp: function(done) {
-    // setup here
-    done();
+  build_dev: function(test) {
+    test.expect(2);
+
+    var actual = read('tmp/build-dev.js');
+    var expected = read('test/expected/build-dev.js');
+
+    test.equal(actual, expected, 'should have the same output');
+
+    actual = read('tmp/build-dev.css');
+    expected = read('test/expected/build-dev.css');
+
+    test.equal(actual, expected, 'should have the same output');
+
+    test.done();
   },
-  'helper': function(test) {
+
+  build_prod: function(test) {
+    test.expect(2);
+
+    var actual = read('tmp/build-prod.js');
+    var expected = read('test/expected/build-prod.js');
+
+    test.equal(actual, expected, 'should have the same output');
+
+    actual = read('tmp/build-prod.css');
+    expected = read('test/expected/build-prod.css');
+
+    test.equal(actual, expected, 'should have the same output');
+
+    test.done();
+  },
+
+  standalone: function(test) {
     test.expect(1);
-    // tests here
-    test.ok(require('../tasks/component'), 'should return the correct value.');
+
+    var actual = read('tmp/standalone.js');
+    var expected = read('test/expected/standalone.js');
+
+    test.equal(actual, expected, 'should have the same output');
+
     test.done();
   }
+
 };

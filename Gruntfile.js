@@ -36,14 +36,27 @@ module.exports = function(grunt) {
       }
     },
 
+    // Configuration to be run (and then tested).
     component: {
-      output: 'dist/',
-      dev: false,
-      standalone: 'name',
-      name: 'file',
-      prefix: 'css',
-      plugins: ['templates', 'coffee'],
-      configure: function(builder){
+      test_build_dev: {
+        output: './tmp/',
+        dev: true,
+        sourceUrls: true,
+        name: 'build-dev'
+      },
+      test_build_prod: {
+        output: './tmp/',
+        dev: false,
+        sourceUrls: false,
+        name: 'build-prod'
+      },
+      test_standalone: {
+        output: './tmp/',
+        dev: false,
+        styles: false,
+        sourceUrls: false,
+        standalone: '$',
+        name: 'standalone'
       }
     }
   });
