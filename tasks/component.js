@@ -106,9 +106,7 @@ module.exports = function(grunt) {
         if( opts.standalone ) {
           obj.name = name;
           obj.config = config;
-          var string = grunt.template.process(template, {
-            data: obj
-          });
+          var string = grunt.template.process(template, obj);
           grunt.file.write(jsFile, string);
         }
         else {

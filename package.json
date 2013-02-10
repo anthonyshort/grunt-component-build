@@ -1,7 +1,7 @@
 {
   "name": "grunt-component-build",
   "description": "Build and watch Components",
-  "version": "0.2.0beta",
+  "version": "0.2.0beta2",
   "homepage": "https://github.com/anthonyshort/grunt-component-build",
   "author": {
     "name": "Anthony Short",
@@ -33,7 +33,7 @@
   "dependencies": {
     "coffee-script": "latest",
     "string-to-js": "latest",
-    "component-builder":"latest"
+    "component-builder": "latest"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
