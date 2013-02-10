@@ -1,5 +1,6 @@
 {
   "name": "grunt-component-build-test",
+  "main": "test/fixtures/index.js",
   "scripts": [
     "test/fixtures/index.js"
   ],
