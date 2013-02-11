@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('component', 'component-build for grunt.', function() {
     var opts = this.data;
-    var name = this.target;
+    var name = opts.name || this.target;
     var output = path.resolve(this.data.output);
     var done = this.async();
     var self = this;
