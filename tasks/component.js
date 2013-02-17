@@ -104,9 +104,12 @@ module.exports = function(grunt) {
       if( opts.scripts !== false ) {
         var jsFile = path.join(output, name + '.js');
         if( opts.standalone ) {
-          obj.name = name;
+          // Defines the name of the global variable (window[opts.name]).
+          // By default we use the name defined in the component.json,
+          // else we use the `standalone` option defined in the Gruntfile.
+          obj.name = (typeof opts.standalone === 'string') ? opts.standalone : config.name;
           obj.config = config;
-          var string = grunt.template.process(template, obj);
+          var string = grunt.template.process(template, { data: obj });
           grunt.file.write(jsFile, string);
         }
         else {
