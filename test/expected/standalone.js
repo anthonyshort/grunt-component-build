@@ -215,7 +215,7 @@ require.alias("grunt-component-build-test/test/fixtures/index.js", "grunt-compon
 if (typeof exports == "object") {
   module.exports = require("grunt-component-build-test");
 } else if (typeof define == "function" && define.amd) {
-  define(require("grunt-component-build-test"));
+  define(function(){ return require("grunt-component-build-test"); });
 } else {
   window["$"] = require("grunt-component-build-test");
 }})();
