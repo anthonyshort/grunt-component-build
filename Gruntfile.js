@@ -57,6 +57,11 @@ module.exports = function(grunt) {
         sourceUrls: false,
         standalone: '$',
         name: 'standalone'
+      },
+      test_base: {
+        base: './test/fixtures',
+        output: './tmp/',
+        name: 'build-base'
       }
     }
   });
