@@ -29,6 +29,16 @@ module.exports = function(grunt) {
     var done = this.async();
     var self = this;
 
+    var joinBasePath = function(files) {
+      if (!files) {
+        return [];
+      }
+
+      return files.map(function(file) {
+        return path.join(opts.base, file);
+      });
+    };
+
     // The component builder
     var builder = new Builder( path.resolve(path.dirname(this.data.config)) );
 
@@ -52,8 +62,9 @@ module.exports = function(grunt) {
 
     // Add in extra scripts during the build since Component makes
     // us define each and every file in our component to build it.
-    config.scripts = grunt.file.expand( config.scripts || [] );
-    config.templates = grunt.file.expand( config.templates || [] );
+    config.scripts = joinBasePath(config.scripts);
+    config.templates = joinBasePath(config.templates);
+    config.styles = joinBasePath(config.styles);
 
     if( config.paths ) {
       builder.addLookup(config.paths);
