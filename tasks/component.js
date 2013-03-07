@@ -23,24 +23,15 @@ module.exports = function(grunt) {
   // ==========================================================================
 
   grunt.registerMultiTask('component', 'component-build for grunt.', function() {
+    var self = this;
     var opts = this.data;
     var name = opts.name || this.target;
+    var dir = path.resolve(path.join(opts.config, opts.base));
     var output = path.resolve(this.data.output);
     var done = this.async();
-    var self = this;
-
-    var joinBasePath = function(files) {
-      if (!files) {
-        return [];
-      }
-
-      return files.map(function(file) {
-        return path.join(opts.base, file);
-      });
-    };
 
     // The component builder
-    var builder = new Builder( path.resolve(path.dirname(this.data.config)) );
+    var builder = new Builder(dir);
 
     if( opts.sourceUrls === true ) {
       builder.addSourceURLs();
@@ -58,13 +49,7 @@ module.exports = function(grunt) {
     }
 
     // The component config
-    var config = require( path.resolve(this.data.base, 'component.json') );
-
-    // Add in extra scripts during the build since Component makes
-    // us define each and every file in our component to build it.
-    config.scripts = joinBasePath(config.scripts);
-    config.templates = joinBasePath(config.templates);
-    config.styles = joinBasePath(config.styles);
+    var config = require(path.join(dir, 'component.json'));
 
     if( config.paths ) {
       builder.addLookup(config.paths);
