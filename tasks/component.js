@@ -11,7 +11,7 @@
 var Builder = require('component-builder');
 var fs = require('fs');
 var path = require('path');
-var template = fs.readFileSync( __dirname + '/../lib/require.tmpl').toString();
+var template = fs.readFileSync(__dirname + '/../lib/require.tmpl').toString();
 
 module.exports = function(grunt) {
 
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
     // The component builder
     var builder = new Builder(dir);
 
-    if( opts.sourceUrls === true ) {
+    if (opts.sourceUrls === true) {
       builder.addSourceURLs();
     }
 
@@ -41,8 +41,8 @@ module.exports = function(grunt) {
     builder.copyAssetsTo(output);
 
     // Ignore component parts
-    if( opts.ignore ) {
-      Object.keys(opts.ignore).forEach(function(n){
+    if (opts.ignore) {
+      Object.keys(opts.ignore).forEach(function(n) {
         var type = opts.ignore[n];
         builder.ignore(n, type);
       });
@@ -51,17 +51,17 @@ module.exports = function(grunt) {
     // The component config
     var config = require(path.join(dir, 'component.json'));
 
-    if( config.paths ) {
+    if (config.paths) {
       builder.addLookup(config.paths);
     }
 
     // Prefix urls
-    if( this.data.prefix ) {
-      builder.prefixUrls(this.data.prefix);
+    if (opts.prefix) {
+      builder.prefixUrls(opts.prefix);
     }
 
     // Development mode
-    if( this.data.dev ) {
+    if (opts.dev) {
       builder.development();
     }
 
@@ -70,52 +70,49 @@ module.exports = function(grunt) {
     // override settings during the build
     builder.conf = config;
 
-    if( opts.plugins ) {
-      opts.plugins.forEach(function(name){
+    if (opts.plugins) {
+      opts.plugins.forEach(function(name) {
         var plugin = require('../plugins/' + name);
         builder.use(plugin);
       });
     }
 
     // Configure hook
-    if( opts.configure ) {
+    if (opts.configure) {
       opts.configure.call(this, builder);
     }
 
     // Build the component
-    builder.build(function(err, obj){
-
+    builder.build(function(err, obj) {
       if (err) {
-        grunt.log.error( err.message );
-        grunt.fatal( err.message );
+        grunt.log.error(err.message);
+        grunt.fatal(err.message);
       }
 
       // Write CSS file
-      if( opts.styles !== false ) {
+      if (opts.styles !== false) {
         var cssFile = path.join(output, name + '.css');
         grunt.file.write(cssFile, obj.css);
       }
 
       // Write JS file
-      if( opts.scripts !== false ) {
+      if (opts.scripts !== false) {
         var jsFile = path.join(output, name + '.js');
-        if( opts.standalone ) {
+        if (opts.standalone) {
           // Defines the name of the global variable (window[opts.name]).
           // By default we use the name defined in the component.json,
           // else we use the `standalone` option defined in the Gruntfile.
           obj.name = (typeof opts.standalone === 'string') ? opts.standalone : config.name;
           obj.config = config;
+
           var string = grunt.template.process(template, { data: obj });
           grunt.file.write(jsFile, string);
-        }
-        else {
+        } else {
           grunt.file.write(jsFile, obj.require + obj.js);
         }
       }
 
       done();
-
     });
   });
-
 };
