@@ -24,16 +24,18 @@ var read = grunt.file.read;
 */
 
 exports['component'] = {
-  build_dev: function(test) {
+
+
+  dev: function(test) {
     test.expect(2);
 
-    var actual = read('tmp/build-dev.js');
-    var expected = read('test/expected/build-dev.js');
+    var actual = read('tmp/dev/dev.js');
+    var expected = read('test/expected/dev/dev.js');
 
     test.equal(actual, expected, 'should have the same output');
 
-    actual = read('tmp/build-dev.css');
-    expected = read('test/expected/build-dev.css');
+    actual = read('tmp/dev/dev.css');
+    expected = read('test/expected/dev/dev.css');
 
     test.equal(actual, expected, 'should have the same output');
 
@@ -41,15 +43,10 @@ exports['component'] = {
   },
 
   build_prod: function(test) {
-    test.expect(2);
+    test.expect(1);
 
-    var actual = read('tmp/build-prod.js');
-    var expected = read('test/expected/build-prod.js');
-
-    test.equal(actual, expected, 'should have the same output');
-
-    actual = read('tmp/build-prod.css');
-    expected = read('test/expected/build-prod.css');
+    var actual = read('tmp/prod/prod.js');
+    var expected = read('test/expected/prod/prod.js');
 
     test.equal(actual, expected, 'should have the same output');
 
@@ -59,8 +56,8 @@ exports['component'] = {
   standalone: function(test) {
     test.expect(1);
 
-    var actual = read('tmp/standalone.js');
-    var expected = read('test/expected/standalone.js');
+    var actual = read('tmp/standalone/standalone.js');
+    var expected = read('test/expected/standalone/standalone.js');
 
     test.equal(actual, expected, 'should have the same output');
 

@@ -38,25 +38,25 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     component: {
-      test_build_dev: {
-        output: './tmp/',
+      test_dev: {
+        base: './test/fixtures/src',
+        output: './tmp/dev',
+        name: 'dev',
         dev: true,
-        sourceUrls: true,
-        name: 'build-dev'
+        sourceUrls: true
       },
-      test_build_prod: {
-        output: './tmp/',
-        dev: false,
-        sourceUrls: false,
-        name: 'build-prod'
+      test_prod: {
+        base: './test/fixtures/src',
+        output: './tmp/prod',
+        name: 'prod',
+        styles: false
       },
       test_standalone: {
-        output: './tmp/',
-        dev: false,
-        styles: false,
-        sourceUrls: false,
+        base: './test/fixtures/src',
+        output: './tmp/standalone',
+        name: 'standalone',
         standalone: '$',
-        name: 'standalone'
+        styles: false
       }
     }
   });
