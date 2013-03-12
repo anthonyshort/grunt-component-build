@@ -1,3 +1,4 @@
+/*jshint node:true */
 /*
  * grunt-component
  * https://github.com/anthonyshort/grunt-component-build
@@ -33,12 +34,22 @@ module.exports = function(grunt) {
     // The component builder
     var builder = new Builder(dir);
 
+    // Where to output the final file
+    builder.copyAssetsTo(output);
+
+    // Prefix urls
+    if (opts.prefix) {
+      builder.prefixUrls(opts.prefix);
+    }
+
+    // Development mode
+    if (opts.dev) {
+      builder.development();
+    }
+
     if (opts.sourceUrls === true) {
       builder.addSourceURLs();
     }
-
-    // Where to output the final file
-    builder.copyAssetsTo(output);
 
     // Ignore component parts
     if (opts.ignore) {
@@ -63,16 +74,6 @@ module.exports = function(grunt) {
       });
 
       builder.addLookup(config.paths);
-    }
-
-    // Prefix urls
-    if (opts.prefix) {
-      builder.prefixUrls(opts.prefix);
-    }
-
-    // Development mode
-    if (opts.dev) {
-      builder.development();
     }
 
     // Set the config on the builder. We've modified
