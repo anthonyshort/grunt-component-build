@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     var self = this;
     var opts = this.data;
     var name = opts.name || this.target;
-    var dir = path.resolve(path.join(opts.config, opts.base));
+    var dir = path.resolve(opts.base || '');
     var output = path.resolve(this.data.output);
     var done = this.async();
 
