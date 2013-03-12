@@ -1,15 +1,16 @@
 DIR = test/expected
+SRC = test/fixtures/src/
 
 expected: clean expected-dev expected-prod standalone
 
 expected-dev:
-	@component build -o $(DIR) -n build-dev --dev
+	cd $(SRC); component build -o $(DIR) -n dev --dev -o ../../expected/dev
 
 expected-prod:
-	@component build -o $(DIR) -n build-prod
+	cd $(SRC); component build -o $(DIR) -n prod -o ../../expected/prod
 
 standalone:
-	@component build -o $(DIR) -n standalone -s $$
+	cd $(SRC); component build -o $(DIR) -n standalone -s $$ -o ../../expected/standalone
 
 clean:
 	rm -fr $(DIR)

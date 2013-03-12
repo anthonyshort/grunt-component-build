@@ -1,0 +1,9 @@
+{
+  "name": "dep",
+  "scripts": [
+    "index.js"
+  ],
+  "styles": [
+    "styles.css"
+  ]
+}
