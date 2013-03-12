@@ -48,6 +48,12 @@ module.exports = function(grunt) {
       });
     }
 
+    // By default Builder takes the paths of the dependencies
+    // from the current directory (here the Gruntfile path).
+    // So in case the dependencies are not stored in the /components
+    // but in the baseOption/components, we have to add it to the lookup.
+    builder.addLookup(path.join(dir, 'components'));
+
     // The component config
     var config = require(path.join(dir, 'component.json'));
 
