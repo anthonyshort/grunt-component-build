@@ -103,7 +103,7 @@ module.exports = function(grunt) {
       // Write CSS file
       if (opts.styles !== false) {
         var cssFile = path.join(output, name + '.css');
-        grunt.file.write(cssFile, obj.css);
+        grunt.file.write(cssFile, obj.css.trim());
       }
 
       // Write JS file
