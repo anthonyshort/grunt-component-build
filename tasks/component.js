@@ -79,7 +79,7 @@ module.exports = function(grunt) {
     // Set the config on the builder. We've modified
     // the original config from the file and this will
     // override settings during the build
-    builder.conf = config;
+    builder.config = config;
 
     if (opts.plugins) {
       opts.plugins.forEach(function(name) {
