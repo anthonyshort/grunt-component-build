@@ -209,6 +209,8 @@ require.register("src/index.js", Function("exports, require, module",
 "var Emitter = require('emitter');\nvar localDep = require('local-dep');\n\nmodule.exports = Foo;\n\nfunction Foo() {\n  console.log(localDep);\n}\n\nEmitter(Foo.prototype);\n\nFoo.prototype.bar = function() {\n  this.emit('bar');\n};//@ sourceURL=src/index.js"
 ));
 require.alias("component-emitter/index.js", "src/deps/emitter/index.js");
+require.alias("component-emitter/index.js", "emitter/index.js");
 
 require.alias("dep/index.js", "src/deps/dep/index.js");
+require.alias("dep/index.js", "dep/index.js");
 

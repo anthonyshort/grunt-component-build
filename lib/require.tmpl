@@ -4,5 +4,5 @@
 } else if (typeof define == "function" && define.amd) {
   define(function(){ return require("<%= config.name %>"); });
 } else {
-  window["<%= name %>"] = require("<%= config.name %>");
+  this["<%= name %>"] = require("<%= config.name %>");
 }})();
