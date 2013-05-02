@@ -23,7 +23,7 @@ module.exports = function(grunt) {
   // TASKS
   // ==========================================================================
 
-  grunt.registerMultiTask('component', 'component-build for grunt.', function() {
+  grunt.registerMultiTask('component_build', 'component-build for grunt.', function() {
     var self = this;
     var opts = this.data;
     var name = opts.name || this.target;

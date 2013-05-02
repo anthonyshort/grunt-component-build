@@ -23,7 +23,7 @@ var read = grunt.file.read;
     test.ifError(value)
 */
 
-exports['component'] = {
+exports['component_build'] = {
 
 
   dev: function(test) {
