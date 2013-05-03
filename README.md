@@ -1,4 +1,4 @@
-# grunt-component-build
+# grunt-component-build [![Build Status](https://travis-ci.org/anthonyshort/grunt-component-build.png)](https://travis-ci.org/anthonyshort/grunt-component-build)
 
 Build and watch Components. Supports file globs inside of the scripts to build a component using any number of files. This is so that you can use Component in place of Browserify or similar tools to build out CommonJS apps and still have access to the components. 
 
