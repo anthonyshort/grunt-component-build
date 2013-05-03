@@ -37,7 +37,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    component: {
+    component_build: {
       test_dev: {
         base: './test/fixtures/src',
         output: './tmp/dev',
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'component', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'component_build', 'nodeunit']);
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'test']);

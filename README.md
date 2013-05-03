@@ -24,7 +24,7 @@ grunt.loadNpmTasks('grunt-component-build');
 Add a component section to your Grunt file:
 
 ```js
-component: {
+component_build: {
   app: {
     output: './dist/',
     config: './component.json',
@@ -35,14 +35,14 @@ component: {
 }
 ```
 
-You can add as many sub-tasks to the component task and they will be compiled separately.
+You can add as many sub-tasks to the component_build task and they will be compiled separately.
 
 ## Extending Component with Plugins
 
 Builder.js allows us to extending it so we can add support for other languages, like Coffeescript or Jade. You can do this easily in the `configure` option in your grunt file.
 
 ```js
-component: {
+component_build: {
   app: {
     output: './dist/',
     config: './component.json',
@@ -67,7 +67,7 @@ These plugins are extremely simple. You can grab them from npm or write your own
 There are two plugins built into this grunt task. They compile Coffeescript and plain HTML. 
 
 ```js
-component: {
+component_build: {
   app: {
     output: './dist/',
     config: './component.json',
