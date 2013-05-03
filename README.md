@@ -97,9 +97,29 @@ You don't need to add the `.js` extension when requiring the coffee files. Each 
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
 ## Release History
-0.2.0beta - Added support for grunt 0.4.0  
-0.1.4 - Added builder.js plugin support  
-0.1.0 - First release  
+0.2.7  
+- Rename task to component_build  
+- Add Travis
+
+0.2.6  
+- Upgrade component-build to 0.8.1  
+
+0.2.5  
+- Updated support for component-builder 0.7.0  
+- Updated grunt task to use new Builder config name  
+- .conf changed to .config
+
+0.2.4  
+- Upgraded component-build to 0.6.4
+
+0.2.0beta  
+- Added support for grunt 0.4.0  
+
+0.1.4  
+- Added builder.js plugin support  
+
+0.1.0  
+- First release  
 
 ## License
 Copyright (c) 2012 Anthony Short  
