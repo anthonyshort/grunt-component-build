@@ -27,7 +27,6 @@ Add a component section to your Grunt file:
 component_build: {
   app: {
     output: './dist/',
-    config: './component.json',
     styles: false,
     scripts: true,
     standalone: true
@@ -45,7 +44,6 @@ Builder.js allows us to extending it so we can add support for other languages, 
 component_build: {
   app: {
     output: './dist/',
-    config: './component.json',
     styles: false,
     scripts: true,
     standalone: true,
@@ -56,11 +54,8 @@ component_build: {
 }
 ```
 
-These plugins are extremely simple. You can grab them from npm or write your own. 
-
-* [Stylus](https://npmjs.org/package/component-stylus)
-* [Coffeescript](https://npmjs.org/package/builder-coffee)
-* [Prebuilder](https://npmjs.org/package/component-prebuilder)
+These plugins are extremely simple. You can grab them from npm or write your own.  
+[List of plugins](https://github.com/component/component/wiki/Plugins)
 
 ## Built-in Plugins
 
@@ -70,7 +65,6 @@ There are two plugins built into this grunt task. They compile Coffeescript and 
 component_build: {
   app: {
     output: './dist/',
-    config: './component.json',
     styles: false,
     scripts: true,
     standalone: true,
