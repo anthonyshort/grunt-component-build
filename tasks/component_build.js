@@ -93,6 +93,8 @@ module.exports = function(grunt) {
       opts.configure.call(this, builder);
     }
 
+    var start = new Date();
+    
     // Build the component
     builder.build(function(err, obj) {
       if (err) {
@@ -100,15 +102,20 @@ module.exports = function(grunt) {
         grunt.fatal(err.message);
       }
 
+      opts.verbose && grunt.log.writeln( 'duration: ' + ( new Date - start ) + 'ms' );
+      
       // Write CSS file
       if (opts.styles !== false) {
         var cssFile = path.join(output, name + '.css');
         grunt.file.write(cssFile, obj.css.trim());
+        
+        opts.verbose && grunt.log.writeln( 'write: ' + cssFile + ' (' + ( obj.css.trim().length / 1024 | 0 ) + 'kb)';
       }
 
       // Write JS file
       if (opts.scripts !== false) {
         var jsFile = path.join(output, name + '.js');
+        var size = 0;
         if (opts.standalone) {
           // Defines the name of the global variable (window[opts.name]).
           // By default we use the name defined in the component.json,
@@ -118,9 +125,14 @@ module.exports = function(grunt) {
 
           var string = grunt.template.process(template, { data: obj });
           grunt.file.write(jsFile, string);
+          size = string.length;
         } else {
           grunt.file.write(jsFile, obj.require + obj.js);
+          size = obj.require.length + obj.js.length;
         }
+
+        opts.verbose && grunt.log.writeln( 'write: ' + jsFile + ' (' + ( size / 1024 | 0 ) + 'kb)' );
+
       }
 
       done();
