@@ -109,7 +109,7 @@ module.exports = function(grunt) {
         var cssFile = path.join(output, name + '.css');
         grunt.file.write(cssFile, obj.css.trim());
         
-        opts.verbose && grunt.log.writeln( 'write: ' + cssFile + ' (' + ( obj.css.trim().length / 1024 | 0 ) + 'kb)' );
+        opts.verbose && grunt.log.writeln( 'write: ' + path.join(self.data.output, name + '.css') + ' (' + ( obj.css.trim().length / 1024 | 0 ) + 'kb)' );
       }
 
       // Write JS file
@@ -123,7 +123,7 @@ module.exports = function(grunt) {
           obj.name = (typeof opts.standalone === 'string') ? opts.standalone : config.name;
           obj.config = config;
 
-          var string = grunt.template.process(template, { data: obj });
+          var string = grunt.template.process(template, { data: obj });
           grunt.file.write(jsFile, string);
           size = string.length;
         } else {
@@ -131,7 +131,7 @@ module.exports = function(grunt) {
           size = obj.require.length + obj.js.length;
         }
 
-        opts.verbose && grunt.log.writeln( 'write: ' + jsFile + ' (' + ( size / 1024 | 0 ) + 'kb)' );
+        opts.verbose && grunt.log.writeln( 'write: ' + path.join(self.data.output, name + '.js') + ' (' + ( size / 1024 | 0 ) + 'kb)' );
 
       }
 
