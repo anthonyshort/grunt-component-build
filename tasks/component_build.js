@@ -109,7 +109,7 @@ module.exports = function(grunt) {
         var cssFile = path.join(output, name + '.css');
         grunt.file.write(cssFile, obj.css.trim());
         
-        opts.verbose && grunt.log.writeln( 'write: ' + cssFile + ' (' + ( obj.css.trim().length / 1024 | 0 ) + 'kb)';
+        opts.verbose && grunt.log.writeln( 'write: ' + cssFile + ' (' + ( obj.css.trim().length / 1024 | 0 ) + 'kb)' );
       }
 
       // Write JS file
