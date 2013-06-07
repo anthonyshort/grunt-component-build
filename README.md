@@ -26,10 +26,9 @@ Add a component section to your Grunt file:
 ```js
 component_build: {
   app: {
-    output: './dist/',
     styles: false,
     scripts: true,
-    standalone: true
+    verbose: true
   }
 }
 ```
@@ -97,6 +96,9 @@ You don't need to add the `.js` extension when requiring the coffee files. Each 
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
 ## Release History
+0.2.8  
+- Add an option for verbose output (similar to component build -v)
+
 0.2.7  
 - Rename task to component_build  
 - Add Travis
