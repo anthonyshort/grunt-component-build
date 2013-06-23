@@ -96,6 +96,9 @@ You don't need to add the `.js` extension when requiring the coffee files. Each 
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
 ## Release History
+0.3.0  
+- Define a default output `/build`. The `output` option is now optional.
+
 0.2.8  
 - Add an option for verbose output (similar to component build -v)
 
