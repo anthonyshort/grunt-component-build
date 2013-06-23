@@ -1,5 +1,6 @@
 'use strict';
 
+var fs = require('fs');
 var grunt = require('grunt');
 var read = grunt.file.read;
 
@@ -25,6 +26,11 @@ var read = grunt.file.read;
 
 exports['component_build'] = {
 
+  build_default: function(test) {
+    test.expect(1);
+    test.equal(2, fs.readdirSync('build').length, 'should have 2 files in the build folder');
+    test.done();
+  },
 
   dev: function(test) {
     test.expect(2);

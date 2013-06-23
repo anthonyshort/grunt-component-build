@@ -29,7 +29,8 @@ module.exports = function(grunt) {
     var name = opts.name || this.target;
     var verbose = opts.verbose;
     var dir = path.resolve(opts.base || '');
-    var output = path.resolve(this.data.output);
+    var defaultOutput = 'build';
+    var output = path.resolve(this.data.output || defaultOutput);
     var done = this.async();
 
     var verboseLog = function(str) {
@@ -116,7 +117,7 @@ module.exports = function(grunt) {
         var cssFile = path.join(output, name + '.css');
         grunt.file.write(cssFile, obj.css.trim());
 
-        verboseLog('write: ' + path.join(self.data.output, name + '.css') + ' (' + (obj.css.trim().length / 1024 | 0) + 'kb)');
+        verboseLog('write: ' + path.join(self.data.output || defaultOutput, name + '.css') + ' (' + (obj.css.trim().length / 1024 | 0) + 'kb)');
       }
 
       // Write JS file
@@ -138,7 +139,7 @@ module.exports = function(grunt) {
           size = obj.require.length + obj.js.length;
         }
 
-        verboseLog( 'write: ' + path.join(self.data.output, name + '.js') + ' (' + ( size / 1024 | 0 ) + 'kb)' );
+        verboseLog( 'write: ' + path.join(self.data.output || defaultOutput, name + '.js') + ' (' + ( size / 1024 | 0 ) + 'kb)' );
       }
 
       done();

@@ -38,6 +38,9 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     component_build: {
+      test_default: {
+        base: './test/fixtures/src'
+      },
       test_dev: {
         base: './test/fixtures/src',
         output: './tmp/dev',
