@@ -35,6 +35,13 @@ module.exports = function(grunt) {
       }
     },
 
+    // Generates expected files
+    shell: {
+      expected: {
+        command: 'make'
+      }
+    },
+
     // Configuration to be run (and then tested).
     component_build: {
       test_default: {
@@ -68,13 +75,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Load local tasks.
   grunt.loadTasks('tasks');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'component_build', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'component_build', 'shell:expected', 'nodeunit']);
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'test']);

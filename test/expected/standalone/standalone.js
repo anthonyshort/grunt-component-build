@@ -64,7 +64,6 @@ require.aliases = {};
 
 require.resolve = function(path) {
   if (path.charAt(0) === '/') path = path.slice(1);
-  var index = path + '/index.js';
 
   var paths = [
     path,
@@ -77,10 +76,7 @@ require.resolve = function(path) {
   for (var i = 0; i < paths.length; i++) {
     var path = paths[i];
     if (require.modules.hasOwnProperty(path)) return path;
-  }
-
-  if (require.aliases.hasOwnProperty(index)) {
-    return require.aliases[index];
+    if (require.aliases.hasOwnProperty(path)) return require.aliases[path];
   }
 };
 
