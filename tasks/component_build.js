@@ -134,6 +134,9 @@ module.exports = function(grunt) {
           var string = grunt.template.process(template, { data: obj });
           grunt.file.write(jsFile, string);
           size = string.length;
+        } else if (opts.noRequire) {
+          grunt.file.write(jsFile, obj.js);
+          size = obj.js.length;
         } else {
           grunt.file.write(jsFile, obj.require + obj.js);
           size = obj.require.length + obj.js.length;
