@@ -196,17 +196,187 @@ require.relative = function(parent) {
   return localRequire;
 };
 require.register("component-emitter/index.js", Function("exports, require, module",
-"\n/**\n * Expose `Emitter`.\n */\n\nmodule.exports = Emitter;\n\n/**\n * Initialize a new `Emitter`.\n *\n * @api public\n */\n\nfunction Emitter(obj) {\n  if (obj) return mixin(obj);\n};\n\n/**\n * Mixin the emitter properties.\n *\n * @param {Object} obj\n * @return {Object}\n * @api private\n */\n\nfunction mixin(obj) {\n  for (var key in Emitter.prototype) {\n    obj[key] = Emitter.prototype[key];\n  }\n  return obj;\n}\n\n/**\n * Listen on the given `event` with `fn`.\n *\n * @param {String} event\n * @param {Function} fn\n * @return {Emitter}\n * @api public\n */\n\nEmitter.prototype.on = function(event, fn){\n  this._callbacks = this._callbacks || {};\n  (this._callbacks[event] = this._callbacks[event] || [])\n    .push(fn);\n  return this;\n};\n\n/**\n * Adds an `event` listener that will be invoked a single\n * time then automatically removed.\n *\n * @param {String} event\n * @param {Function} fn\n * @return {Emitter}\n * @api public\n */\n\nEmitter.prototype.once = function(event, fn){\n  var self = this;\n  this._callbacks = this._callbacks || {};\n\n  function on() {\n    self.off(event, on);\n    fn.apply(this, arguments);\n  }\n\n  fn._off = on;\n  this.on(event, on);\n  return this;\n};\n\n/**\n * Remove the given callback for `event` or all\n * registered callbacks.\n *\n * @param {String} event\n * @param {Function} fn\n * @return {Emitter}\n * @api public\n */\n\nEmitter.prototype.off =\nEmitter.prototype.removeListener =\nEmitter.prototype.removeAllListeners = function(event, fn){\n  this._callbacks = this._callbacks || {};\n\n  // all\n  if (0 == arguments.length) {\n    this._callbacks = {};\n    return this;\n  }\n\n  // specific event\n  var callbacks = this._callbacks[event];\n  if (!callbacks) return this;\n\n  // remove all handlers\n  if (1 == arguments.length) {\n    delete this._callbacks[event];\n    return this;\n  }\n\n  // remove specific handler\n  var i = callbacks.indexOf(fn._off || fn);\n  if (~i) callbacks.splice(i, 1);\n  return this;\n};\n\n/**\n * Emit `event` with the given args.\n *\n * @param {String} event\n * @param {Mixed} ...\n * @return {Emitter}\n */\n\nEmitter.prototype.emit = function(event){\n  this._callbacks = this._callbacks || {};\n  var args = [].slice.call(arguments, 1)\n    , callbacks = this._callbacks[event];\n\n  if (callbacks) {\n    callbacks = callbacks.slice(0);\n    for (var i = 0, len = callbacks.length; i < len; ++i) {\n      callbacks[i].apply(this, args);\n    }\n  }\n\n  return this;\n};\n\n/**\n * Return array of callbacks for `event`.\n *\n * @param {String} event\n * @return {Array}\n * @api public\n */\n\nEmitter.prototype.listeners = function(event){\n  this._callbacks = this._callbacks || {};\n  return this._callbacks[event] || [];\n};\n\n/**\n * Check if this emitter has `event` handlers.\n *\n * @param {String} event\n * @return {Boolean}\n * @api public\n */\n\nEmitter.prototype.hasListeners = function(event){\n  return !! this.listeners(event).length;\n};\n//@ sourceURL=component-emitter/index.js"
+"\n\
+/**\n\
+ * Expose `Emitter`.\n\
+ */\n\
+\n\
+module.exports = Emitter;\n\
+\n\
+/**\n\
+ * Initialize a new `Emitter`.\n\
+ *\n\
+ * @api public\n\
+ */\n\
+\n\
+function Emitter(obj) {\n\
+  if (obj) return mixin(obj);\n\
+};\n\
+\n\
+/**\n\
+ * Mixin the emitter properties.\n\
+ *\n\
+ * @param {Object} obj\n\
+ * @return {Object}\n\
+ * @api private\n\
+ */\n\
+\n\
+function mixin(obj) {\n\
+  for (var key in Emitter.prototype) {\n\
+    obj[key] = Emitter.prototype[key];\n\
+  }\n\
+  return obj;\n\
+}\n\
+\n\
+/**\n\
+ * Listen on the given `event` with `fn`.\n\
+ *\n\
+ * @param {String} event\n\
+ * @param {Function} fn\n\
+ * @return {Emitter}\n\
+ * @api public\n\
+ */\n\
+\n\
+Emitter.prototype.on = function(event, fn){\n\
+  this._callbacks = this._callbacks || {};\n\
+  (this._callbacks[event] = this._callbacks[event] || [])\n\
+    .push(fn);\n\
+  return this;\n\
+};\n\
+\n\
+/**\n\
+ * Adds an `event` listener that will be invoked a single\n\
+ * time then automatically removed.\n\
+ *\n\
+ * @param {String} event\n\
+ * @param {Function} fn\n\
+ * @return {Emitter}\n\
+ * @api public\n\
+ */\n\
+\n\
+Emitter.prototype.once = function(event, fn){\n\
+  var self = this;\n\
+  this._callbacks = this._callbacks || {};\n\
+\n\
+  function on() {\n\
+    self.off(event, on);\n\
+    fn.apply(this, arguments);\n\
+  }\n\
+\n\
+  fn._off = on;\n\
+  this.on(event, on);\n\
+  return this;\n\
+};\n\
+\n\
+/**\n\
+ * Remove the given callback for `event` or all\n\
+ * registered callbacks.\n\
+ *\n\
+ * @param {String} event\n\
+ * @param {Function} fn\n\
+ * @return {Emitter}\n\
+ * @api public\n\
+ */\n\
+\n\
+Emitter.prototype.off =\n\
+Emitter.prototype.removeListener =\n\
+Emitter.prototype.removeAllListeners = function(event, fn){\n\
+  this._callbacks = this._callbacks || {};\n\
+\n\
+  // all\n\
+  if (0 == arguments.length) {\n\
+    this._callbacks = {};\n\
+    return this;\n\
+  }\n\
+\n\
+  // specific event\n\
+  var callbacks = this._callbacks[event];\n\
+  if (!callbacks) return this;\n\
+\n\
+  // remove all handlers\n\
+  if (1 == arguments.length) {\n\
+    delete this._callbacks[event];\n\
+    return this;\n\
+  }\n\
+\n\
+  // remove specific handler\n\
+  var i = callbacks.indexOf(fn._off || fn);\n\
+  if (~i) callbacks.splice(i, 1);\n\
+  return this;\n\
+};\n\
+\n\
+/**\n\
+ * Emit `event` with the given args.\n\
+ *\n\
+ * @param {String} event\n\
+ * @param {Mixed} ...\n\
+ * @return {Emitter}\n\
+ */\n\
+\n\
+Emitter.prototype.emit = function(event){\n\
+  this._callbacks = this._callbacks || {};\n\
+  var args = [].slice.call(arguments, 1)\n\
+    , callbacks = this._callbacks[event];\n\
+\n\
+  if (callbacks) {\n\
+    callbacks = callbacks.slice(0);\n\
+    for (var i = 0, len = callbacks.length; i < len; ++i) {\n\
+      callbacks[i].apply(this, args);\n\
+    }\n\
+  }\n\
+\n\
+  return this;\n\
+};\n\
+\n\
+/**\n\
+ * Return array of callbacks for `event`.\n\
+ *\n\
+ * @param {String} event\n\
+ * @return {Array}\n\
+ * @api public\n\
+ */\n\
+\n\
+Emitter.prototype.listeners = function(event){\n\
+  this._callbacks = this._callbacks || {};\n\
+  return this._callbacks[event] || [];\n\
+};\n\
+\n\
+/**\n\
+ * Check if this emitter has `event` handlers.\n\
+ *\n\
+ * @param {String} event\n\
+ * @return {Boolean}\n\
+ * @api public\n\
+ */\n\
+\n\
+Emitter.prototype.hasListeners = function(event){\n\
+  return !! this.listeners(event).length;\n\
+};\n\
+//@ sourceURL=component-emitter/index.js"
 ));
 require.register("dep/index.js", Function("exports, require, module",
 "module.exports = 'Local dep';//@ sourceURL=dep/index.js"
 ));
 require.register("src/index.js", Function("exports, require, module",
-"var Emitter = require('emitter');\nvar localDep = require('local-dep');\n\nmodule.exports = Foo;\n\nfunction Foo() {\n  console.log(localDep);\n}\n\nEmitter(Foo.prototype);\n\nFoo.prototype.bar = function() {\n  this.emit('bar');\n};//@ sourceURL=src/index.js"
+"var Emitter = require('emitter');\n\
+var localDep = require('local-dep');\n\
+\n\
+module.exports = Foo;\n\
+\n\
+function Foo() {\n\
+  console.log(localDep);\n\
+}\n\
+\n\
+Emitter(Foo.prototype);\n\
+\n\
+Foo.prototype.bar = function() {\n\
+  this.emit('bar');\n\
+};//@ sourceURL=src/index.js"
 ));
+
+
 require.alias("component-emitter/index.js", "src/deps/emitter/index.js");
 require.alias("component-emitter/index.js", "emitter/index.js");
 
 require.alias("dep/index.js", "src/deps/dep/index.js");
 require.alias("dep/index.js", "dep/index.js");
-

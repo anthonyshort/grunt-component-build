@@ -373,9 +373,10 @@ Foo.prototype.bar = function() {
   this.emit('bar');
 };
 });
+
+
 require.alias("component-emitter/index.js", "src/deps/emitter/index.js");
 require.alias("component-emitter/index.js", "emitter/index.js");
 
 require.alias("dep/index.js", "src/deps/dep/index.js");
 require.alias("dep/index.js", "dep/index.js");
-
