@@ -66,6 +66,13 @@ module.exports = function(grunt) {
         name: 'standalone',
         standalone: '$',
         styles: false
+      },
+      test_norequire: {
+        base: './test/fixtures/src',
+        output: './tmp/norequire',
+        name: 'norequire',
+        noRequire: true,
+        styles: false
       }
     }
   });

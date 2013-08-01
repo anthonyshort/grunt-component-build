@@ -68,6 +68,17 @@ exports['component_build'] = {
     test.equal(actual, expected, 'should have the same output');
 
     test.done();
+  },
+
+  norequire: function(test) {
+    test.expect(1);
+
+    var actual = read('tmp/norequire/norequire.js');
+    var expected = read('test/expected/norequire/norequire.js');
+
+    test.equal(actual, expected, 'should have the same output');
+
+    test.done();
   }
 
 };
