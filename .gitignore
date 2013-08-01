@@ -1,4 +1,5 @@
 /node_modules/*
 /tmp/
 /build/
-/.DS_Store
+.DS_Store
+/test/expected/
