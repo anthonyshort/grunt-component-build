@@ -72,7 +72,21 @@ component_build: {
 }
 ```
 
+
 These are located in the `/plugins` folder and function the same way as any other builder.js plugin. These are opt-in so you'll need to add the line to your config.
+
+## Exclude require from build
+
+```js
+component_build: {
+  app: {
+    output: './dist/',
+    styles: false,
+    scripts: true,
+    noRequire: true
+  }
+}
+```
 
 ### Templates
 
