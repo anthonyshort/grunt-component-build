@@ -43,36 +43,45 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    component_build: {
+    componentbuild: {
       test_default: {
-        base: './test/fixtures/src'
+        src: './test/fixtures/src',
+        dest: './build'
       },
       test_dev: {
-        base: './test/fixtures/src',
-        output: './tmp/dev',
-        name: 'dev',
-        dev: true,
-        sourceUrls: true
+        options: {
+          name: 'dev',
+          dev: true,
+          sourceUrls: true
+        },
+        src: './test/fixtures/src',
+        dest: './tmp/dev'
       },
       test_prod: {
-        base: './test/fixtures/src',
-        output: './tmp/prod',
-        name: 'prod',
-        styles: false
+        options: {
+          name: 'prod',
+          styles: false
+        },
+        src: './test/fixtures/src',
+        dest: './tmp/prod'
       },
       test_standalone: {
-        base: './test/fixtures/src',
-        output: './tmp/standalone',
-        name: 'standalone',
-        standalone: '$',
-        styles: false
+        options: {
+          name: 'standalone',
+          standalone: '$',
+          styles: false
+        },
+        src: './test/fixtures/src',
+        dest: './tmp/standalone'
       },
       test_norequire: {
-        base: './test/fixtures/src',
-        output: './tmp/norequire',
-        name: 'norequire',
-        noRequire: true,
-        styles: false
+        options: {
+          name: 'norequire',
+          noRequire: true,
+          styles: false
+        },
+        src: './test/fixtures/src',
+        dest: './tmp/norequire'
       }
     }
   });
@@ -89,7 +98,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'component_build', 'shell:expected', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'componentbuild', 'shell:expected', 'nodeunit']);
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'test']);
