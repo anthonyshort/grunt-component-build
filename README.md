@@ -106,6 +106,21 @@ var calendar = require('calendar');
 
 You don't need to add the `.js` extension when requiring the coffee files. Each coffee file is converted on the fly and replaces the original in the built file.
 
+## Source Maps
+
+Generate source map URLs.
+
+```js
+component_build: {
+  app: {
+    output: './dist/',
+    styles: false,
+    scripts: true,
+    sourceUrls: true
+  }
+}
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
