@@ -62,29 +62,19 @@ These plugins are extremely simple. You can grab them from npm or write your own
 
 ## Options
 
-      name: 'build',
-      dev: false,
-      sourceUrls: false,
-      ignore: {},
-      standalone: false,
-      paths: [],
-      prefix: false,
-      copy: false,
-      noRequire: false
-
-## name
+### name
 
 Set the name of the built file.
 
-## dev
+### dev
 
 Set `--dev` flag to true. This builds in development dependencies.
 
-## sourceUrls
+### sourceUrls
 
 Include source urls in built files
 
-## ignore
+### ignore
 
 Ignore parts of specific components
 
@@ -94,24 +84,24 @@ ignore: {
 }
 ```
 
-## standalone
+### standalone
 
 The same `--standalone` flag in `component build`. Setting this to a string will name the global variable to that
 is exported. Setting this to `true` will do the same, but it will use the component name by default.
 
-## paths
+### paths
 
 Add lookup paths for local components
 
-## prefix
+### prefix
 
 Prefix CSS URLs with a string. Useful for rewriting URLs to point to a CDN.
 
-## copy
+### copy
 
 Copy component assets instead of symlinking.
 
-## noRequire
+### noRequire
 
 Exclude the require function at the top of the built component.
 
