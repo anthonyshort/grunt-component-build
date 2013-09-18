@@ -32,11 +32,8 @@ componentbuild: {
     options: {
       name: 'dev'
     },
-    files: [{
-      expand: true,
-      src: ['my-components/*'],
-      dest: 'build/'
-    }]
+    src: 'my-component',
+    dest: 'my-component/build'
   }
 }
 ```
