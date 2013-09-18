@@ -60,15 +60,61 @@ componentbuild: {
 These plugins are extremely simple. You can grab them from npm or write your own.  
 [List of plugins](https://github.com/component/component/wiki/Plugins)
 
-## Exclude require from build
+## Options
 
-```js
-component_build: {
-  options: {
-    noRequire: true
-  }
+      name: 'build',
+      dev: false,
+      sourceUrls: false,
+      ignore: {},
+      standalone: false,
+      paths: [],
+      prefix: false,
+      copy: false,
+      noRequire: false
+
+## name
+
+Set the name of the built file.
+
+## dev
+
+Set `--dev` flag to true. This builds in development dependencies.
+
+## sourceUrls
+
+Include source urls in built files
+
+## ignore
+
+Ignore parts of specific components
+
+```
+ignore: {
+  'component-name': ['scripts', 'templates']
 }
 ```
+
+## standalone
+
+The same `--standalone` flag in `component build`. Setting this to a string will name the global variable to that
+is exported. Setting this to `true` will do the same, but it will use the component name by default.
+
+## paths
+
+Add lookup paths for local components
+
+## prefix
+
+Prefix CSS URLs with a string. Useful for rewriting URLs to point to a CDN.
+
+## copy
+
+Copy component assets instead of symlinking.
+
+## noRequire
+
+Exclude the require function at the top of the built component.
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
