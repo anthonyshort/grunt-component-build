@@ -32,7 +32,7 @@ componentbuild: {
     options: {
       name: 'dev'
     },
-    src: [{
+    files: [{
       expand: true,
       src: ['my-components/*'],
       dest: 'build/'
@@ -104,22 +104,6 @@ Copy component assets instead of symlinking.
 ### noRequire
 
 Exclude the require function at the top of the built component.
-
-
-## Source Maps
-
-Generate source map URLs.
-
-```js
-component_build: {
-  app: {
-    output: './dist/',
-    styles: false,
-    scripts: true,
-    sourceUrls: true
-  }
-}
-```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
