@@ -9,6 +9,8 @@ function Foo() {
 
 Emitter(Foo.prototype);
 
+var string = "{{ foo }}";
+
 Foo.prototype.bar = function() {
   this.emit('bar');
 };
