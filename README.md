@@ -55,7 +55,7 @@ componentbuild: {
 ```
 
 These plugins are extremely simple. You can grab them from npm or write your own.  
-[List of plugins](https://github.com/component/component/wiki/Plugins)
+[List of plugins](https://github.com/component/component/wiki/Custom-builds)
 
 ## Options
 
