@@ -65,7 +65,7 @@ exports['component_build'] = {
     var actual = read('tmp/standalone/standalone.js');
     var expected = read('test/expected/standalone/standalone.js');
 
-    test.equal(actual, expected, 'should have the same output');
+    test.equal(actual.trim(), expected.trim(), 'should have the same output');
 
     test.done();
   },
