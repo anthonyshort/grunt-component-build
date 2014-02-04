@@ -106,6 +106,9 @@ Exclude the require function at the top of the built component.
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
 ## Release History
+0.4.3
+- Fix ignore option
+
 0.4.0
 - Refactor to support Grunt 0.4.0+ API
 
