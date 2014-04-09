@@ -3,9 +3,6 @@
   "dependencies": {
     "component/emitter": "*"
   },
-  "paths": [
-    ".."
-  ],
   "local": [
     "dep"
   ],

@@ -1,0 +1,9 @@
+{
+  "name": "fixtures",
+  "paths": [
+    "./"
+  ],
+  "local": [
+    "src"
+  ]
+}
