@@ -11,5 +11,8 @@
   ],
   "styles": [
     "styles.css"
+  ],
+  "files": [
+    "image.png"
   ]
 }

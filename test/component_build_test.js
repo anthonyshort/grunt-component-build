@@ -28,23 +28,7 @@ exports['component_build'] = {
 
   build_default: function(test) {
     test.expect(1);
-    test.equal(2, fs.readdirSync('build').length, 'should have 2 files in the build folder');
-    test.done();
-  },
-
-  dev: function(test) {
-    test.expect(2);
-
-    var actual = read('tmp/dev/dev.js');
-    var expected = read('test/expected/dev/dev.js');
-
-    test.equal(actual, expected, 'should have the same output');
-
-    actual = read('tmp/dev/dev.css');
-    expected = read('test/expected/dev/dev.css');
-
-    test.equal(actual, expected, 'should have the same output');
-
+    test.equal(3, fs.readdirSync('tmp/default').length, 'should have 2 files in the build folder');
     test.done();
   },
 

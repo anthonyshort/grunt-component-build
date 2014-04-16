@@ -31,10 +31,9 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "component-builder": "^1.1.2",
     "async": "^0.7.0",
-    "mkdirp": "^0.3.5",
-    "handlebars": "^2.0.0"
+    "component-resolver": "^1.1.1",
+    "component-build": "^1.2.0"
   },
   "devDependencies": {
     "grunt": "^0.4.4",
@@ -48,6 +47,7 @@
     "gruntplugin",
     "component(1)",
     "component",
-    "builder.js"
+    "builder.js",
+    "builder2.js"
   ]
 }

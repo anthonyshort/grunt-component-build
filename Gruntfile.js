@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         curly: true,
         eqeqeq: true,
         immed: true,
-        latedef: true,
+        latedef: false,
         newcap: true,
         noarg: true,
         sub: true,
@@ -45,16 +45,15 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     componentbuild: {
       test_default: {
-        src: './test/fixtures/src',
-        dest: './build'
+        src: './test/fixtures',
+        dest: './tmp/default'
       },
       test_dev: {
         options: {
           name: 'dev',
-          dev: true,
-          sourceUrls: true
+          development: true
         },
-        src: './test/fixtures/src',
+        src: './test/fixtures',
         dest: './tmp/dev'
       },
       test_prod: {
@@ -62,7 +61,7 @@ module.exports = function(grunt) {
           name: 'prod',
           styles: false
         },
-        src: './test/fixtures/src',
+        src: './test/fixtures',
         dest: './tmp/prod'
       },
       test_standalone: {
@@ -71,16 +70,16 @@ module.exports = function(grunt) {
           standalone: '$',
           styles: false
         },
-        src: './test/fixtures/src',
+        src: './test/fixtures',
         dest: './tmp/standalone'
       },
       test_norequire: {
         options: {
           name: 'norequire',
-          noRequire: true,
+          require: false,
           styles: false
         },
-        src: './test/fixtures/src',
+        src: './test/fixtures',
         dest: './tmp/norequire'
       }
     }
@@ -98,7 +97,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'componentbuild', 'shell:expected', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'componentbuild' , 'shell:expected', 'nodeunit']);
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'test']);
