@@ -1,5 +1,7 @@
 'use strict';
 
+var jade = require('builder-jade');
+
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -81,6 +83,17 @@ module.exports = function(grunt) {
         },
         src: './test/fixtures',
         dest: './tmp/norequire'
+      },
+      test_plugins: {
+        options: {
+          scriptPlugins: function(build) {
+            build.use('templates', jade({
+              string: true
+            }));
+          }
+        },
+        src: './test/fixtures/plugins',
+        dest: './tmp/plugins'
       }
     }
   });
@@ -97,7 +110,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'componentbuild' , 'shell:expected', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'componentbuild', 'shell:expected', 'nodeunit']);
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'test']);

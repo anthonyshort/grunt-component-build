@@ -1,0 +1,10 @@
+{
+  "name": "plugins",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ],
+  "templates": [
+    "index.jade"
+  ]
+}

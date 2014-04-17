@@ -63,6 +63,14 @@ exports['component_build'] = {
     test.equal(actual, expected, 'should have the same output');
 
     test.done();
+  },
+
+  plugins: function(test) {
+    test.expect(1);
+
+    var file = read('tmp/plugins/build.js');
+    test.ok(file.indexOf('<html><head></head><body></body></html>') > -1);
+    test.done();
   }
 
 };
