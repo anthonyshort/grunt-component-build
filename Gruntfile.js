@@ -1,6 +1,7 @@
 'use strict';
 
 var jade = require('builder-jade');
+var coffee = require('builder-coffee-script');
 
 module.exports = function(grunt) {
 
@@ -87,6 +88,8 @@ module.exports = function(grunt) {
       test_plugins: {
         options: {
           scriptPlugins: function(build) {
+            build.use('scripts', coffee());
+
             build.use('templates', jade({
               string: true
             }));

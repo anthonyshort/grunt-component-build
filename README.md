@@ -24,11 +24,7 @@ Add a component section to your Grunt file:
 
 ```js
 componentbuild: {
-  options: {
-     dev: true,
-     sourceUrls: true
-  },
-  components: {
+  dev: {
     options: {
       name: 'dev'
     },
@@ -42,20 +38,27 @@ You can add as many sub-tasks to the `componentbuild` task and they will be comp
 
 ## Extending Component with Plugins
 
-Builder.js allows us to extending it so we can add support for other languages, like Coffeescript or Jade. You can do this easily in the `configure` option in your grunt file.
+Builder2.js allows us to extending it so we can add support for other languages, like [CoffeeScript](https://github.com/component/builder-coffee) or [Jade](https://github.com/component/builder-jade). 
+You can find an example [here](test/fixtures/plugins).
 
 ```js
 componentbuild: {
   options: {
-    configure: function(builder){
-      builder.use(plugin);
+    scriptPlugins: function(build) {
+      build.use('scripts', coffee());
+      build.use('templates', jade({ string: true }));
+    },
+    stylePlugins: function(build) {
+    },
+    filePlugins: function(build) {
     }
   }
 }
 ```
 
-These plugins are extremely simple. You can grab them from npm or write your own.  
-[List of plugins](https://github.com/component/component/wiki/Custom-builds)
+By default `stylePlugins` uses [Autoprefixer](https://github.com/ai/autoprefixer) to add vendor prefixes to CSS rules. You can define the browser support using the option `browser`.
+
+Make sure the plugin supports the latest API for [builder2.js](https://github.com/component/builder2.js).
 
 ## Options
 
@@ -63,49 +66,46 @@ These plugins are extremely simple. You can grab them from npm or write your own
 
 Set the name of the built file.
 
-### dev
+### install
 
-Set `--dev` flag to true. This builds in development dependencies.
+Install dependencies.
 
-### sourceUrls
+### development
 
-Include source urls in built files
-
-### ignore
-
-Ignore parts of specific components
-
-```
-ignore: {
-  'component-name': ['scripts', 'templates']
-}
-```
+Set `--dev` flag to true. Enable source URLs.
 
 ### standalone
 
 The same `--standalone` flag in `component build`. Setting this to a string will name the global variable to that
 is exported. Setting this to `true` will do the same, but it will use the component name by default.
 
-### paths
-
-Add lookup paths for local components
-
 ### prefix
 
 Prefix CSS URLs with a string. Useful for rewriting URLs to point to a CDN.
+
+### browser
+
+[Autoprefixer](https://github.com/ai/autoprefixer#browsers) browser support.
 
 ### copy
 
 Copy component assets instead of symlinking.
 
-### noRequire
+### require
 
 Exclude the require function at the top of the built component.
+
+### verbose
+
+Show build information.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
 ## Release History
+0.5.0
+- Add builder2.js support (component 1.0.0) using [component build](https://github.com/component/build.js).
+
 0.4.3
 - Fix ignore option
 
@@ -149,5 +149,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 - First release  
 
 ## License
-Copyright (c) 2012 Anthony Short  
+Copyright (c) 2014 Anthony Short  
 Licensed under the MIT license.

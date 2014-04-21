@@ -36,13 +36,14 @@
     "component-build": "^1.2.0"
   },
   "devDependencies": {
+    "builder-coffee-script": "^0.1.1",
+    "builder-jade": "^1.0.1",
     "grunt": "^0.4.4",
-    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-nodeunit": "^0.3.3",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-shell": "^0.6.4",
-    "builder-jade": "^1.0.1"
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-shell": "^0.6.4"
   },
   "keywords": [
     "gruntplugin",

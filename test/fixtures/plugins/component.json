@@ -1,8 +1,8 @@
 {
   "name": "plugins",
-  "main": "index.js",
+  "main": "index.coffee",
   "scripts": [
-    "index.js"
+    "index.coffee"
   ],
   "templates": [
     "index.jade"
