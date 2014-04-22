@@ -38,7 +38,8 @@ You can add as many sub-tasks to the `componentbuild` task and they will be comp
 
 ## Extending Component with Plugins
 
-Builder2.js allows us to extending it so we can add support for other languages, like [CoffeeScript](https://github.com/component/builder-coffee) or [Jade](https://github.com/component/builder-jade). 
+Builder2.js allows us to extending it so we can add support for other languages, like [CoffeeScript](https://github.com/component/builder-coffee) or [Jade](https://github.com/component/builder-jade) (See the list of official [builder plugins](https://github.com/component/guide/blob/master/component/repositories.md#builder-plugins)). 
+
 You can find an example [here](test/fixtures/plugins).
 
 ```js
@@ -56,9 +57,9 @@ componentbuild: {
 }
 ```
 
-By default `stylePlugins` uses [Autoprefixer](https://github.com/ai/autoprefixer) to add vendor prefixes to CSS rules. You can define the browser support using the option `browser`.
+By default `stylePlugins` use [Autoprefixer](https://github.com/ai/autoprefixer) to add vendor prefixes to CSS rules. You can define the browser support using the option `browser`.
 
-Make sure the plugin supports the latest API for [builder2.js](https://github.com/component/builder2.js).
+Make sure the plugin supports the latest [builder2.js](https://github.com/component/builder2.js) API.
 
 ## Options
 
