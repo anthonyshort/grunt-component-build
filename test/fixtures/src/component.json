@@ -1,7 +1,8 @@
 {
   "name": "src",
   "dependencies": {
-    "component/emitter": "*"
+    "component/emitter": "*",
+    "the-gss/error-reporter": "*"
   },
   "local": [
     "dep"
