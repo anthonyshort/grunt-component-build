@@ -38,6 +38,7 @@
   "devDependencies": {
     "builder-coffee-script": "^0.1.1",
     "builder-jade": "^1.0.1",
+    "component": "^1.0.0-rc5",
     "grunt": "^0.4.4",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-jshint": "^0.10.0",
