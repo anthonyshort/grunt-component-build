@@ -57,7 +57,7 @@ componentbuild: {
 }
 ```
 
-By default `stylePlugins` use [Autoprefixer](https://github.com/ai/autoprefixer) to add vendor prefixes to CSS rules. You can define the browser support using the option `browser`.
+By default `stylePlugins` use [Autoprefixer](https://github.com/ai/autoprefixer) to add vendor prefixes to CSS rules. You can specify the browsers you want to target in your project using the option `browsers`.
 
 Make sure the plugin supports the latest [builder2.js](https://github.com/component/builder2.js) API.
 
@@ -84,9 +84,9 @@ is exported. Setting this to `true` will do the same, but it will use the compon
 
 Prefix CSS URLs with a string. Useful for rewriting URLs to point to a CDN.
 
-### browser
+### browsers
 
-[Autoprefixer](https://github.com/ai/autoprefixer#browsers) browser support.
+[Autoprefixer](https://github.com/ai/autoprefixer#browsers) browsers support.
 
 ### copy
 
@@ -104,13 +104,16 @@ Show build information.
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
 ## Release History
-0.5.0
+0.5.1  
+- Fix `browser` typo in the doc. [#41](https://github.com/anthonyshort/grunt-component-build/issues/41)
+
+0.5.0  
 - Add builder2.js support (component 1.0.0) using [component build](https://github.com/component/build.js).
 
-0.4.3
+0.4.3  
 - Fix ignore option
 
-0.4.0
+0.4.0  
 - Refactor to support Grunt 0.4.0+ API
 
 0.3.2  
