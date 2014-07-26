@@ -104,7 +104,7 @@ Show build information.
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
 ## Release History
-0.5.1  
+0.5.2  
 - Fix `browser` typo in the doc. [#41](https://github.com/anthonyshort/grunt-component-build/issues/41)
 
 0.5.0  
